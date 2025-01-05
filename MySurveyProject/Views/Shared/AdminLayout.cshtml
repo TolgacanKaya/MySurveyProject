@@ -1,0 +1,73 @@
+﻿﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f8fc;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background-color: rgba(41, 26, 65, 1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .top-menu {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+            .top-menu li {
+                display: inline;
+            }
+
+                .top-menu li a {
+                    display: block;
+                    color: white;
+                    text-align: center;
+                    padding: 14px 20px;
+                    text-decoration: none;
+                }
+
+                    .top-menu li a:hover {
+                        background-color: black;
+                    }
+
+        .content {
+            padding: 20px;
+            margin-top: 60px; 
+            display: flex;
+            justify-content: center;
+            min-height: 70vh;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul class="top-menu">
+            <div class="ilkLinkler">
+            <li><a href="@Url.Action("UserIndex","User")">Anasayfa</a></li>
+     
+            </div>
+            <div class="sonLinkler">
+            <li><a href="@Url.Action("LogOut","Admin")">Çıkış Yap</a></li>
+            </div>
+        </ul>
+    </nav>
+
+    <div class="content">
+        @RenderBody()
+    </div>
+</body>
+</html>

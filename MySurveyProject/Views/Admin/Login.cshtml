@@ -1,0 +1,112 @@
+﻿@* @{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+</head>
+<body>
+    <div>
+        <form asp-action="Login" asp-controller="Admin" method="post">
+            <label>Email:</label>
+            <input type="text" name="Email" />
+            <label>Password</label>
+            <input type="password" name="Password" />
+            <button type="submit">Giriş Yap</button>
+        </form>
+    </div>
+</body>
+</html>
+ *@
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background: #fff;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input {
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        button {
+            padding: 10px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+            button:hover {
+                background-color: #0056b3;
+            }
+
+        .login-container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Giriş Yap</h1>
+        <form asp-action="Login" asp-controller="Admin" method="post">
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="Email" placeholder="Email adresinizi girin" required />
+
+            <label for="password">Şifre:</label>
+            <input type="password" id="password" name="Password" placeholder="Şifrenizi girin" required />
+
+            <button type="submit">Giriş Yap</button>
+        </form>
+    </div>
+</body>
+</html>

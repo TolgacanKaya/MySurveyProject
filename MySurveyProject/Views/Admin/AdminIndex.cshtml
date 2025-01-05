@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewData["Title"] = "AdminIndex";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div style="text-align: center; padding: 20px;">
+    <div style="background-color: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); margin-bottom: 20px;">
+        <a href="@Url.Action("CreateSurvey","Survey")" style="text-decoration: none; color: #007bff;">
+            <h2>Anket Oluştur</h2>
+        </a>
+    </div>
+    <div style="background-color: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); margin-bottom: 20px;">
+        <a href="@Url.Action("SurveyHistory","Survey")" style="text-decoration: none; color: #007bff;">
+            <h2>Geçmiş Anketler</h2>
+        </a>
+    </div>
+</div>
+

@@ -1,0 +1,118 @@
+﻿
+@{
+    ViewData["Title"] = "AddQuestionToSurvey";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<style>
+
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f7f8fc;
+    }
+
+
+    .form-container {
+        background-color: #ffffff;
+        padding: 25px 35px;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+        text-align: center;
+    }
+
+        .form-container h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+    label {
+        display: block;
+        margin-top: 15px;
+        font-weight: bold;
+        color: #555;
+        text-align: left;
+    }
+
+    input[type="text"], select {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        box-sizing: border-box;
+        font-size: 16px;
+        background-color: #fafafa;
+        transition: border-color 0.3s;
+    }
+
+        input[type="text"]:focus, select:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+    button {
+        margin-top: 20px;
+        width: 100%;
+        padding: 12px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+    .complete-link {
+        margin-top: 20px;
+        font-size: 16px;
+    }
+
+        .complete-link a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+            .complete-link a:hover {
+                text-decoration: underline;
+            }
+</style>
+<div class="form-container">
+    <form action="@Url.Action("AddQuestionToSurvey","Survey")" method="post">
+        <h1>Soru Ekle</h1>
+        <div>
+            <label>Soru:</label>
+            <input type="text" name="question" required />
+        </div>
+        <div>
+            <label>Soru Tipi:</label>
+            <select name="questionType">
+                <option value="Test">Test</option>
+                <option value="AcikUclu">Açık Uçlu</option>
+            </select>
+        </div>
+        <input type="hidden" name="SurveyID" value="@ViewBag.SurveyID" />
+        <button type="submit">Ekle</button>
+    </form>
+</div>
+
+@if (ViewBag.Completable)
+{
+    <div class="complete-link">
+        <a href="@Url.Action("CompleteSurvey","Survey",new{surveyId=ViewBag.SurveyID})">Anketi Tamamla</a>
+    </div>
+}
+

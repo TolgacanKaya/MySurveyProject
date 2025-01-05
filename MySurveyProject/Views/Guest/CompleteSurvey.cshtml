@@ -1,0 +1,139 @@
+﻿@using MySurveyProject.ViewModels
+@model SurveyModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>CompleteSurvey</title>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+        color: #333;
+        line-height: 1.6;
+    }
+
+    h1 {
+        text-align: center;
+        margin-top: 20px;
+        color: #007bff;
+    }
+
+    form {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    h3 {
+        font-size: 18px;
+        margin-bottom: 10px;
+        color: #333;
+    }
+
+    textarea {
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        resize: vertical;
+    }
+
+    .question {
+        margin-bottom: 20px;
+        padding: 10px;
+        background-color: #f4f4f9;
+        border-radius: 5px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    input[type="radio"] {
+        margin-right: 10px;
+    }
+
+    button {
+        display: block;
+        width: 100%;
+        padding: 15px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+    }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+</style>
+<body>
+    <h1>@Model.SurveyTitle</h1>
+    <form method="post" action="@Url.Action("CompleteSurvey","Guest")">
+        @foreach (var item in Model.TestQuestions)
+        {
+            <div>
+                <h3>@item.TestQuestionText</h3>
+                <div>
+                    <label>
+                        <input type="radio" name="TestAnswers[@item.TestId]" value="@item.opt1" required />
+                        @item.opt1
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input type="radio" name="TestAnswers[@item.TestId]" value="@item.opt2" />
+                        @item.opt2
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input type="radio" name="TestAnswers[@item.TestId]" value="@item.opt3" />
+                        @item.opt3
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input type="radio" name="TestAnswers[@item.TestId]" value="@item.opt4" />
+                        @item.opt4
+                    </label>
+                </div>
+            </div>
+            <input type="hidden" name="TestAnswers[@item.TestId].QuestionId" value="@item.TestId" />
+        }
+        @foreach (var item in Model.Questions)
+        {
+            <h3>@item.QuestionName</h3>
+
+           @*  <input type="hidden" name="OpenAnswers[@item.QuestionId].QuestionId" value="@item.QuestionId" />
+          
+            <textarea name="OpenAnswers[@item.QuestionName]" rows="4" cols="50" required></textarea> *@
+            <textarea name="OpenAnswers[@item.QuestionId]" rows="4" cols="50" required></textarea>
+
+
+        }
+        <input type="hidden" name="surveyId" value="@Model.SurveyId" />
+        <button type="submit">Anketi Tamamla</button>
+    </form>
+</body>
+</html>
+
