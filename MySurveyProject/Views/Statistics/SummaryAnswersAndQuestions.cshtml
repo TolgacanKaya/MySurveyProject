@@ -1,0 +1,54 @@
+﻿@using MySurveyProject.ViewModels
+@using System.Text.Json
+@model SummaryAnswersAndQuestionsDTO
+
+@{
+    ViewData["Title"] = "SummaryAnswersAndQuestions";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<div style="width: 80%; margin: auto;">
+    <canvas id="questionsChart"></canvas>
+</div>
+
+<script>
+ 
+    const questionLabels = @Html.Raw(JsonSerializer.Serialize(Model.question_summary.Select(q => q.QuestionText)));
+    const responseCounts = @Html.Raw(JsonSerializer.Serialize(Model.question_summary.Select(q => q.ResponseCount)));
+
+    const ctx = document.getElementById('questionsChart').getContext('2d');
+    const questionsChart = new Chart(ctx, {
+        type: 'bar', 
+        data: {
+            labels: questionLabels, 
+            datasets: [{
+                label: 'Yanıt Sayıları',
+                data: responseCounts, 
+                backgroundColor: 'rgba(75, 192, 192, 0.2)', 
+                borderColor: 'rgba(75, 192, 192, 1)', 
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Sorular ve Yanıt Sayıları'
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+

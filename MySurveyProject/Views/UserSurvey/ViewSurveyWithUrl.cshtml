@@ -1,0 +1,10 @@
+﻿@using MySurveyProject.Model
+@model UserSurveys
+@{
+    ViewData["Title"] = "ViewSurveyWithUrl";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+
+
+<p>Anketi çözmek için tıklayınız  <a href="@Url.Action("AnswerUserSurvey","UserSurvey",new{url=Model.UniuqeLink})">@Model.SurveyName</a></p>

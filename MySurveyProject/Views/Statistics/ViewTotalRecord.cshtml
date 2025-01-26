@@ -1,0 +1,47 @@
+﻿@using MySurveyProject.ViewModels
+@model TotalRecordsDTO
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ViewTotalRecord</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <canvas id="myChart" width="150" height="150"></canvas>
+
+    <script>
+        var totalRecords = @Html.Raw(Json.Serialize(Model));
+
+        var labels = ['Toplam Kayıtlar'];  
+        var values = [totalRecords.total_records];  
+
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',  
+            data: {
+                labels: labels,  
+                datasets: [{
+                    label: 'Kayıt Sayısı',
+                    data: values, 
+                    backgroundColor: ['rgba(75, 192, 192, 0.2)'],  
+                    borderColor: ['rgba(75, 192, 192, 1)'],  
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,  
+                plugins: {
+                    legend: {
+                        position: 'top',  
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

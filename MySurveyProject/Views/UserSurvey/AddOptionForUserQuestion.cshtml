@@ -1,13 +1,12 @@
 ﻿
 @{
-    ViewData["Title"] = "AddQuestionToSurvey";
-    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    ViewData["Title"] = "AddOptionForUserQuestion";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
+
 <style>
 
-  
-
-
+    
     .form-container {
         background-color: #ffffff;
         padding: 25px 35px;
@@ -32,7 +31,7 @@
         text-align: left;
     }
 
-    input[type="text"], select {
+    input[type="text"] {
         width: 100%;
         padding: 10px;
         margin-top: 5px;
@@ -44,7 +43,7 @@
         transition: border-color 0.3s;
     }
 
-        input[type="text"]:focus, select:focus {
+        input[type="text"]:focus {
             border-color: #007bff;
             outline: none;
         }
@@ -82,28 +81,31 @@
             }
 </style>
 <div class="form-container">
-    <form action="@Url.Action("AddQuestionToSurvey","Survey")" method="post">
-        <h1>Soru Ekle</h1>
+    <form action="@Url.Action("AddOptionForUserQuestion","UserSurvey")" method="post">
+        <h1>Şıkları Ekle</h1>
         <div>
-            <label>Soru:</label>
-            <input type="text" name="question" required />
+            <label>A Şıkkı:</label>
+            <input type="text" name="opt1" required />
         </div>
         <div>
-            <label>Soru Tipi:</label>
-            <select name="questionType">
-                <option value="Test">Test</option>
-                <option value="AcikUclu">Açık Uçlu</option>
-            </select>
+            <label>B Şıkkı:</label>
+            <input type="text" name="opt2" required />
         </div>
-        <input type="hidden" name="SurveyID" value="@ViewBag.SurveyID" />
+        <div>
+            <label>C Şıkkı:</label>
+            <input type="text" name="opt3" required />
+        </div>
+        <div>
+            <label>D Şıkkı:</label>
+            <input type="text" name="opt4" required />
+        </div>
+        <input type="hidden" name="QuestionId" value="@ViewBag.QuestionID" />
         <button type="submit">Ekle</button>
     </form>
 </div>
+<div class="complete-link">
+    <a href="@Url.Action("CompleteUserSurvey","UserSurvey")">Tamamla</a>
+</div>
 
-@if (ViewBag.Completable)
-{
-    <div class="complete-link">
-        <a href="@Url.Action("CompleteSurvey","Survey",new{surveyId=ViewBag.SurveyID})">Anketi Tamamla</a>
-    </div>
-}
+
 

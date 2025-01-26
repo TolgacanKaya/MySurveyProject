@@ -1,12 +1,11 @@
 ﻿
 @{
-    ViewData["Title"] = "AddQuestionToSurvey";
-    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    ViewData["Title"] = "AddQuestionToUserSurvey";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 <style>
 
-  
-
+ 
 
     .form-container {
         background-color: #ffffff;
@@ -82,7 +81,7 @@
             }
 </style>
 <div class="form-container">
-    <form action="@Url.Action("AddQuestionToSurvey","Survey")" method="post">
+    <form action="@Url.Action("AddQuestionToUserSurvey","UserSurvey")" method="post">
         <h1>Soru Ekle</h1>
         <div>
             <label>Soru:</label>
@@ -103,7 +102,7 @@
 @if (ViewBag.Completable)
 {
     <div class="complete-link">
-        <a href="@Url.Action("CompleteSurvey","Survey",new{surveyId=ViewBag.SurveyID})">Anketi Tamamla</a>
+        <a href="@Url.Action("CompleteUserSurvey","UserSurvey",new{surveyId=ViewBag.SurveyID})">Anketi Tamamla</a>
     </div>
 }
 

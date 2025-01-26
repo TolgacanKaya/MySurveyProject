@@ -1,23 +1,24 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MySurveyProject.Model
 {
-    public class Question
+    public class UserSurveyQuestions
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int QuestionId { get; set; }
+        public int UserSurveyQuestionsId { get; set; }
+
         [Required]
-        
         public string QuestionText { get; set; }
         [Required]
         [StringLength(30)]
         public string QuestionType { get; set; }
         [Required]
         public bool Activity { get; set; }
-        [ForeignKey("Survey")]
-        public int SurveyId { get; set; }
-        public Survey Survey { get; set; }
+        [ForeignKey("UserSurveys")]
+        public int UserSurveysId { get; set; }
+        public UserSurveys UserSurveys { get; set; }
+
     }
 }

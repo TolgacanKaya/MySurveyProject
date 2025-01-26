@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "UserSignUp";
+    Layout = "~/Views/Shared/_GuestLayout.cshtml";
+    var message = ViewBag.Message;
+}
+
+@if (!string.IsNullOrEmpty(message))
+{
+    <p>@message</p>
+}
+<div>
+    <form asp-action="UserSignUp" asp-controller="User" method="post">
+        <label>Kullanıcı Adı:</label>
+        <input type="text" name="UserName" />
+        <label>Şifre:</label>
+        <input type="password" name="Password" />
+        <button type="submit">Üye Ol</button>
+    </form>
+</div>
+
+

@@ -1,0 +1,64 @@
+﻿@using System.Text.Json
+@model List<KeyValuePair<string, int>>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Question Response Count</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div style="width: 70%; margin: auto;">
+        <canvas id="responseChart"></canvas>
+    </div>
+
+    <script>
+        
+        var labels = @Html.Raw(JsonSerializer.Serialize(Model.Select(x => x.Key)));
+        var data = @Html.Raw(JsonSerializer.Serialize(Model.Select(x => x.Value)));
+
+        
+        const ctx = document.getElementById('responseChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar', 
+            data: {
+                labels: labels, 
+                datasets: [{
+                    label: 'Response Count',
+                    data: data, 
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)', 
+                    borderColor: 'rgba(75, 192, 192, 1)', 
+                    borderWidth: 1 
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
+                    },
+                    tooltip: {
+                        enabled: true
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Questions'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Response Count'
+                        },
+                        beginAtZero: true 
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

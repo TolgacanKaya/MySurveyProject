@@ -1,11 +1,10 @@
 ﻿
 @{
-    ViewData["Title"] = "AddQuestionToSurvey";
-    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    ViewData["Title"] = "CraeteUserSurvey";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
-<style>
 
-  
+<style>
 
 
     .form-container {
@@ -17,6 +16,7 @@
         max-width: 400px;
         text-align: center;
     }
+
 
         .form-container h1 {
             color: #333;
@@ -32,7 +32,7 @@
         text-align: left;
     }
 
-    input[type="text"], select {
+    input[type="text"] {
         width: 100%;
         padding: 10px;
         margin-top: 5px;
@@ -44,10 +44,11 @@
         transition: border-color 0.3s;
     }
 
-        input[type="text"]:focus, select:focus {
+        input[type="text"]:focus {
             border-color: #007bff;
             outline: none;
         }
+
 
     button {
         margin-top: 20px;
@@ -66,44 +67,19 @@
         button:hover {
             background-color: #0056b3;
         }
-
-    .complete-link {
-        margin-top: 20px;
-        font-size: 16px;
-    }
-
-        .complete-link a {
-            color: #007bff;
-            text-decoration: none;
-        }
-
-            .complete-link a:hover {
-                text-decoration: underline;
-            }
 </style>
 <div class="form-container">
-    <form action="@Url.Action("AddQuestionToSurvey","Survey")" method="post">
-        <h1>Soru Ekle</h1>
+    <form action="@Url.Action("CraeteUserSurvey","UserSurvey")" method="post">
+        <h1>Anket Oluştur</h1>
         <div>
-            <label>Soru:</label>
-            <input type="text" name="question" required />
+            <label>Anket İsmi:</label>
+            <input type="text" name="name" required />
         </div>
         <div>
-            <label>Soru Tipi:</label>
-            <select name="questionType">
-                <option value="Test">Test</option>
-                <option value="AcikUclu">Açık Uçlu</option>
-            </select>
+            <label>Açıklama:</label>
+            <input type="text" name="description" required />
         </div>
-        <input type="hidden" name="SurveyID" value="@ViewBag.SurveyID" />
-        <button type="submit">Ekle</button>
+        <button type="submit">Oluştur</button>
     </form>
 </div>
-
-@if (ViewBag.Completable)
-{
-    <div class="complete-link">
-        <a href="@Url.Action("CompleteSurvey","Survey",new{surveyId=ViewBag.SurveyID})">Anketi Tamamla</a>
-    </div>
-}
 

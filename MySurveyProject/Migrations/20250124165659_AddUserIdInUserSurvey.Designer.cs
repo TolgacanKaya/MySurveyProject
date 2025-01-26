@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MySurveyProject.Model;
 
@@ -11,9 +12,11 @@ using MySurveyProject.Model;
 namespace MySurveyProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250124165659_AddUserIdInUserSurvey")]
+    partial class AddUserIdInUserSurvey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -203,56 +206,6 @@ namespace MySurveyProject.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("MySurveyProject.Model.UserQuestionAnswer", b =>
-                {
-                    b.Property<int>("UserQuestionAnswerId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserQuestionAnswerId"));
-
-                    b.Property<string>("AnswerText")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("OptionText")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("QuestionId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("QuestionText")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("SurveyAnswerId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SurveyId")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserQuestionAnswerId");
-
-                    b.ToTable("UserQuestionAnswers");
-                });
-
-            modelBuilder.Entity("MySurveyProject.Model.UserSurveyAnswer", b =>
-                {
-                    b.Property<int>("UserSurveyAnswerId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserSurveyAnswerId"));
-
-                    b.Property<int>("UserSurveysId")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserSurveyAnswerId");
-
-                    b.HasIndex("UserSurveysId");
-
-                    b.ToTable("UserSurveyAnswers");
-                });
-
             modelBuilder.Entity("MySurveyProject.Model.UserSurveyOption", b =>
                 {
                     b.Property<int>("OptionId")
@@ -377,17 +330,6 @@ namespace MySurveyProject.Migrations
                         .IsRequired();
 
                     b.Navigation("Survey");
-                });
-
-            modelBuilder.Entity("MySurveyProject.Model.UserSurveyAnswer", b =>
-                {
-                    b.HasOne("MySurveyProject.Model.UserSurveys", "UserSurveys")
-                        .WithMany()
-                        .HasForeignKey("UserSurveysId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("UserSurveys");
                 });
 
             modelBuilder.Entity("MySurveyProject.Model.UserSurveyOption", b =>

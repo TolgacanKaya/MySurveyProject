@@ -1,0 +1,57 @@
+﻿@using System.Text.Json
+@model List<KeyValuePair<string,string>>
+@{
+    ViewData["Title"] = "SurveyResponseCount";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    var labels = Model.Select(q => q.Key).ToArray();
+    var dataValues = Model.Select(q => q.Value).ToArray();
+}
+
+<canvas id="surveyChart" width="400" height="200"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+   
+    const labels = @Html.Raw(Json.Serialize(labels));
+    const dataValues = @Html.Raw(Json.Serialize(dataValues));
+
+   
+    const ctx = document.getElementById('surveyChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels, 
+            datasets: [{
+                label: 'Response Count',
+                data: dataValues, 
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Response Count'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Survey Questions'
+                    }
+                }
+            }
+        }
+    });
+</script>

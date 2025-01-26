@@ -1,18 +1,18 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MySurveyProject.Model
 {
-    public class Survey
+    public class UserSurveys
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int SurveyId { get; set; }
+        public int UserSurveyId { get; set; }
         [Required]
-      
+
         public string SurveyName { get; set; }
         [Required]
-       
+
         public string Description { get; set; }
         [Required]
         public DateTime CreatedDate { get; set; }
@@ -21,5 +21,9 @@ namespace MySurveyProject.Model
         [Required]
         public bool Completable { get; set; }
         public int SurveyCompletionCount { get; set; }
+        public string? UniuqeLink { get; set; }
+        [ForeignKey("User")]
+        public int? UserId { get; set; }
+        public User User { get; set; }
     }
 }

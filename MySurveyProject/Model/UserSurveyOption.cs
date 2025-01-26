@@ -3,19 +3,21 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MySurveyProject.Model
 {
-    public class Option
+    public class UserSurveyOption
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OptionId { get; set; }
 
         [Required]
-  
+
         public string OptionText { get; set; }
 
-        [ForeignKey("Question")]
-        public int QuestionId { get; set; }
+        [ForeignKey("UserQuestionQuestions")]
+        public int UserSurveyQuestionsId { get; set; }
 
-        public Question Question { get; set; }
+        public UserSurveyQuestions UserSurveyQuestions { get; set; }
     }
 }
+
+

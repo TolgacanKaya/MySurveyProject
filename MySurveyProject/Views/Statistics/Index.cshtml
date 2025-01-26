@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<table>
+    <thead>
+        <tr>
+            <th>İstatistik Sonucu</th>
+            <th>Görüntüle</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Toplam Kayıt Sayısı</td>
+            <td><a asp-action="ViewTotalRecord" asp-controller="Statistics">Görüntüle</a></td>
+        </tr>
+        <tr>
+            <td>Her soru için cevap sayısı</td>
+            <td><a asp-action="QuestionResponseCount" asp-controller="Statistics">Görüntüle</a></td>
+        </tr>
+        <tr>
+            <td>Her soru için verilen cevapların freakansı</td>
+            <td><a asp-action="AnswerTextFrequency" asp-controller="Statistics">Görüntüle</a></td>
+        </tr>
+        <tr>
+            <td>Soruların metinleri ve cevapları ile özeti</td>
+            <td><a asp-action="SummaryAnswersAndQuestions" asp-controller="Statistics">Görüntüle</a></td>
+        </tr>
+        <tr>
+            <td>Anketleri surveyID ye göre yanıt sayısı</td>
+            <td><a asp-action="SurveyResponseCount" asp-controller="Statistics">Görüntüle</a></td>
+        </tr>
+    </tbody>
+</table>
+

@@ -17,10 +17,15 @@ namespace MySurveyProject.Model
         public DbSet<Option> Options { get; set; }
         public DbSet<SurveyAnswer> SurveyAnswers { get; set; }
         public DbSet<QuestionAnswer> QuestionAnswers { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<UserSurveys> UsersSurveys { get; set; }
+        public DbSet<UserSurveyQuestions> UserSurveysQuestions { get; set; }
+        public DbSet<UserSurveyOption> UserSurveyOptions { get; set; }
+        public DbSet<UserSurveyAnswer> UserSurveyAnswers { get; set; }
+        public DbSet<UserQuestionAnswer> UserQuestionAnswers { get; set; }
+
+
 
 
     }
-
-
-
 }

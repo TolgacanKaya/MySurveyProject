@@ -1,23 +1,23 @@
 ﻿@using MySurveyProject.Model
-@model List<Survey>
-
+@model List<UserSurveys>
 @{
-    ViewData["Title"] = "GuestIndex";
-    Layout = "~/Views/Shared/_GuestLayout.cshtml";
+    ViewData["Title"] = "ViewUserSurveys";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
+
 
 
 <style>
 
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f4f4f9;
-        color: #333;
-        line-height: 1.6;
-    }
-
+    /*  body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f4f4f9;
+                color: #333;
+                line-height: 1.6;
+            }
+         */
 
     .table {
         width: 80%;
@@ -85,7 +85,7 @@
             <th>Anket ismi</th>
             <th>Açıklama</th>
             <th>Tarih</th>
-            <th>Çöz</th>
+            <th>Gelen cevaplar</th>
         </tr>
     </thead>
     <tbody>
@@ -95,7 +95,7 @@
                 <td>@item.SurveyName</td>
                 <td>@item.Description</td>
                 <td>@item.CreatedDate</td>
-                <td><a href="@Url.Action("CompleteSurvey","Guest",new{surveyId=item.SurveyId})">Çöz</a></td>
+                <td><a href="@Url.Action("ViewAnswerUserSurvey","UserSurvey",new{userSurveyId=item.UserSurveyId})">Gelen Cevaplar</a></td>
             </tr>
         }
     </tbody>

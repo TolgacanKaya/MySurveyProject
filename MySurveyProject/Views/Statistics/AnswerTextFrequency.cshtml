@@ -1,0 +1,100 @@
+﻿@using MySurveyProject.ViewModels
+@model KeyValuePair<string, List<AnswerFrequency>>
+
+@{
+    ViewData["Title"] = "AnswerTextFrequency";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<h1>Answer Text Frequency</h1>
+
+<canvas id="myChart" width="400" height="200"></canvas>
+
+<script>
+    // Prepare the data for the chart
+    var labels = [];
+    var frequencies = [];
+
+    @foreach (var item in Model.Value)
+    {
+        <text>
+                        labels.push('@item.AnswerText');
+                        frequencies.push(@item.Frequency);
+        </text>
+    }
+
+    // Chart.js chart creation
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar', // Choose 'bar' for a bar chart
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Answer Frequency',
+                data: frequencies,
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+
+@* @using MySurveyProject.ViewModels
+@model KeyValuePair<string, List<AnswerFrequency>>
+
+@{
+    ViewData["Title"] = "AnswerTextFrequency";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<h1>Answer Text Frequency</h1>
+
+
+@foreach (var question in Model.Value)
+{
+    <h3>Question: @question.Key</h3>
+    <canvas id="chart-@question.Key" width="400" height="200"></canvas>
+    <script>
+        var ctx = document.getElementById('chart-@question.Key').getContext('2d');
+        var chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [
+        @string.Join(",", question.Value.Select(a => $"\"{a.AnswerText}\""))
+                ],
+                datasets: [{
+                    label: 'Frequencies',
+                    data: [
+        @string.Join(",", question.Value.Select(a => a.Frequency.ToString()))
+                    ],
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+}
+
+ *@
